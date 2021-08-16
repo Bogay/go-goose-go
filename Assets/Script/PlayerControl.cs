@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace GoGooseGo
 {
     public class PlayerControl : MonoBehaviour
     {
+        public BoxCollider2D hillDetect;
         [Inject]
         private PlayerData playerData;
 
@@ -35,7 +37,6 @@ namespace GoGooseGo
             var collider = GetComponent<Collider2D>();
             collider.OnTriggerEnter2DAsObservable()
                 .Where(other => other.CompareTag("Ground"))
-                .Do(_ => Debug.Log("I am enter"))
                 .Subscribe(other =>
                 {
                     this.playerData.isGround.Value = true;
@@ -43,8 +44,26 @@ namespace GoGooseGo
                 .AddTo(this);
             collider.OnTriggerExit2DAsObservable()
                 .Where(other => other.CompareTag("Ground"))
-                .Do(_ => Debug.Log("I am exit"))
                 .Subscribe(_ => this.playerData.isGround.Value = false)
+                .AddTo(this);
+            this.hillDetect.OnTriggerStay2DAsObservable()
+                .Where(_ => this.playerData.isGround.Value)
+                .Where(collider => collider.CompareTag("Ground"))
+                .Select(_ =>
+                {
+                    var pos = this.hillDetect.transform.position;
+                    var delta = Vector3.right * this.hillDetect.size.x;
+                    Debug.DrawLine(pos - delta, pos + delta, Color.red);
+                    var cast = Physics2D.Linecast(pos - delta, pos + delta);
+                    return cast;
+                })
+                .Where(cast => cast.collider)
+                .Subscribe(cast =>
+                {
+                    var newPos = transform.position;
+                    newPos.y = cast.point.y;
+                    transform.position = newPos;
+                })
                 .AddTo(this);
             var rb2d = GetComponent<Rigidbody2D>();
             this.playerData.velocity
