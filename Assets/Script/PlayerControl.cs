@@ -53,7 +53,6 @@ namespace GoGooseGo
                 {
                     var pos = this.hillDetect.transform.position;
                     var delta = Vector3.right * this.hillDetect.size.x;
-                    Debug.DrawLine(pos - delta, pos + delta, Color.red);
                     var cast = Physics2D.Linecast(pos - delta, pos + delta);
                     return cast;
                 })

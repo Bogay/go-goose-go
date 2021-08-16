@@ -23,6 +23,11 @@ namespace GoGooseGo
         [field : SerializeField]
         public float gravity { get; private set; } = -9.8f;
 
+        [HideInInspector]
+        public Vector2 velocityLimitX;
+        [HideInInspector]
+        public Vector2 velocityLimitY;
+
         public ReactiveProperty<Direction> direction { get; } = new ReactiveProperty<Direction>(Direction.Left);
         public BoolReactiveProperty isGround { get; private set; }
         public Vector2ReactiveProperty velocity { get; private set; }
@@ -53,6 +58,9 @@ namespace GoGooseGo
         {
             this.isGround = new BoolReactiveProperty();
             this.velocity = new Vector2ReactiveProperty();
+            var inf = new Vector2(Mathf.NegativeInfinity, Mathf.Infinity);
+            this.velocityLimitX = inf;
+            this.velocityLimitY = inf;
         }
 
         public void Jump()
@@ -74,8 +82,9 @@ namespace GoGooseGo
                 this.direction.Value = this.isLeftPressed ? Direction.Left : Direction.Right;
             }
             // Update velocity
-            var scale = this.speed * (this.isLeftPressed || this.isRightPressed ? 1 : 0);
-            var horizontalVel = this.direction.Value == Direction.Left ? -1 : 1;
+            float scale = this.speed * (this.isLeftPressed || this.isRightPressed ? 1 : 0);
+            float horizontalVel = this.direction.Value == Direction.Left ? -1f : 1f;
+            horizontalVel = Mathf.Clamp(scale * horizontalVel, this.velocityLimitX[0], this.velocityLimitX[1]);
             var verticalVel = this.velocity.Value.y;
             if(this.isGround.Value && verticalVel < 0)
             {
@@ -91,8 +100,7 @@ namespace GoGooseGo
                 verticalVel += this.jumpPower;
                 this.isJump = false;
             }
-            var newVel = new Vector2(horizontalVel * scale, verticalVel);
-            this.velocity.Value = newVel;
+            this.velocity.Value = new Vector2(horizontalVel, verticalVel);
         }
     }
 }

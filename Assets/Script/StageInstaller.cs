@@ -11,6 +11,8 @@ namespace GoGooseGo
         {
             this.playerData.Init();
             Container.BindInstance(this.playerData).AsSingle();
+            var player = FindObjectOfType<PlayerControl>();
+            Container.BindInstance(player).AsSingle();
         }
     }
 }
