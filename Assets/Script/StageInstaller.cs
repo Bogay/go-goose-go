@@ -9,6 +9,7 @@ namespace GoGooseGo
         public PlayerData playerData;
         public override void InstallBindings()
         {
+            this.playerData.Init();
             Container.BindInstance(this.playerData).AsSingle();
         }
     }
