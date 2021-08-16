@@ -20,6 +20,16 @@ namespace GoGooseGo
                     var y = dir == PlayerData.Direction.Left ? 0 : 180;
                     transform.eulerAngles = new Vector3(0, y, 0);
                 }).AddTo(this);
+            var animation = GetComponent<Animation>();
+            this.playerData.velocity
+                .Subscribe(vec =>
+                {
+                    if(vec.sqrMagnitude > 0)
+                        animation.Play("Walk");
+                    else
+                        animation.Stop();
+                })
+                .AddTo(this);
         }
 
         private void Update()
