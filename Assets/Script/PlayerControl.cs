@@ -10,7 +10,7 @@ namespace GoGooseGo
     public class PlayerControl : MonoBehaviour
     {
         [Inject]
-        public PlayerData playerData;
+        private PlayerData playerData;
 
         private void Start()
         {
