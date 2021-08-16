@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GoGooseGo
 {
-    [CreateAssetMenu(menuName = "Item")]
+    [CreateAssetMenu(menuName = "GoGooseGo/Item")]
     public class ItemData : ScriptableObject
     {
         [field : SerializeField]

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GoGooseGo
 {
-    [CreateAssetMenu(menuName = "Player/Data")]
+    [CreateAssetMenu(menuName = "GoGooseGo/PlayerData")]
     public class PlayerData : ScriptableObject
     {
         public enum Direction
