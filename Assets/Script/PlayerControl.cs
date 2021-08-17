@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -14,6 +11,8 @@ namespace GoGooseGo
         public BoxCollider2D hillDetect;
         [Inject]
         private PlayerData playerData;
+        [Inject]
+        private GameState game;
 
         private void Start()
         {
@@ -22,7 +21,8 @@ namespace GoGooseGo
                 {
                     var y = dir == PlayerData.Direction.Left ? 0 : 180;
                     transform.eulerAngles = new Vector3(0, y, 0);
-                }).AddTo(this);
+                })
+                .AddTo(this);
             var animation = GetComponent<Animation>();
             this.playerData.velocity
                 .Subscribe(vec =>
@@ -37,10 +37,7 @@ namespace GoGooseGo
             var collider = GetComponent<Collider2D>();
             collider.OnTriggerEnter2DAsObservable()
                 .Where(other => other.CompareTag("Ground"))
-                .Subscribe(other =>
-                {
-                    this.playerData.isGround.Value = true;
-                })
+                .Subscribe(_ => this.playerData.isGround.Value = true)
                 .AddTo(this);
             collider.OnTriggerExit2DAsObservable()
                 .Where(other => other.CompareTag("Ground"))
@@ -66,12 +63,15 @@ namespace GoGooseGo
                 .AddTo(this);
             var rb2d = GetComponent<Rigidbody2D>();
             this.playerData.velocity
+                .Do(v => Debug.Log($"velocity: {v}"))
                 .Subscribe(vel => rb2d.velocity = vel)
                 .AddTo(this);
         }
 
         private void FixedUpdate()
         {
+            if(this.game.isStop.Value)
+                return;
             this.playerData.RefreshVelocity(Time.fixedDeltaTime);
         }
 

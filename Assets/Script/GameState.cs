@@ -10,6 +10,11 @@ namespace GoGooseGo
     {
         public ReactiveProperty<bool> isStop = new ReactiveProperty<bool>();
 
+        public GameState()
+        {
+            this.isStop.Subscribe(i => Time.timeScale = i ? 0 : 1);
+        }
+
         public void Restart()
         {
             var scene = SceneManager.GetActiveScene();

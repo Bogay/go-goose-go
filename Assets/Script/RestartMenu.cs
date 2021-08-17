@@ -16,7 +16,11 @@ namespace GoGooseGo
         void Start()
         {
             this.confirm.onClick.AddListener(this.game.Restart);
-            this.cancel.onClick.AddListener(() => Destroy(gameObject));
+            this.cancel.onClick.AddListener(() =>
+            {
+                Destroy(gameObject);
+                this.game.isStop.Value = false;
+            });
         }
     }
 }

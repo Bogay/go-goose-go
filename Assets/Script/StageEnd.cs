@@ -10,13 +10,20 @@ namespace GoGooseGo
         [Inject(Id = "RestartMenu")]
         private GameObject menu;
         [Inject]
-        DiContainer container;
+        private DiContainer container;
+        [Inject]
+        private GameState game;
 
         private void Start()
         {
-            GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
+            var collider = GetComponent<Collider2D>();
+            collider.OnTriggerEnter2DAsObservable()
                 .Where(other => other.CompareTag("Player"))
-                .Subscribe(_ => this.container.InstantiatePrefab(this.menu, FindObjectOfType<Canvas>().transform))
+                .Subscribe(_ =>
+                {
+                    this.container.InstantiatePrefab(this.menu, FindObjectOfType<Canvas>().transform);
+                    this.game.isStop.Value = true;
+                })
                 .AddTo(this);
         }
     }
