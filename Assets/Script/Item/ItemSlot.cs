@@ -13,7 +13,7 @@ namespace GoGooseGo
         [Inject]
         private ItemCollection collection;
 
-        private ItemData item;
+        public ItemData item { get; private set; }
         private int count;
 
         private void Start()
@@ -28,6 +28,11 @@ namespace GoGooseGo
 
         public void Show(ItemData item, int count)
         {
+            if(count == 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
             this.item = item;
             this.count = count;
             this.sprite.sprite = item.sprite;

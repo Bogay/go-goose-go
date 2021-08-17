@@ -56,7 +56,13 @@ namespace GoGooseGo
             item = item ?? this.selected.Value;
             try
             {
-                this.items[item]--;
+                var count = --this.items[item];
+                if(count == 0)
+                {
+                    this.items.Remove(item);
+                    if(item == this.selected.Value)
+                        this.selected.Value = null;
+                }
             }
             catch (KeyNotFoundException)
             {

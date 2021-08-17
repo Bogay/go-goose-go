@@ -1,3 +1,4 @@
+using System.Linq;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,10 +34,7 @@ namespace GoGooseGo
                 .Subscribe(x => this.addItem(x.Key, x.Value))
                 .AddTo(this);
             this.items.items.ObserveReplace()
-                .Subscribe(x =>
-                {
-                    Debug.Log($"Replace {x.Key.name} {x.NewValue}");
-                })
+                .Subscribe(x => this.updateItem(x.Key, x.NewValue))
                 .AddTo(this);
             this.closeBtn.onClick.AddListener(() =>
             {
@@ -57,7 +55,17 @@ namespace GoGooseGo
                 .GetComponent<ItemSlot>();
             newSlot.Show(item, count);
         }
-        private void onItemRemove(ItemData item) { }
-        private void onItemUpdate(ItemData item, int count) { }
+        private void updateItem(ItemData item, int count)
+        {
+            foreach(var slot in this.grid.GetComponentsInChildren<ItemSlot>())
+            {
+                if(slot.item == item)
+                {
+                    slot.Show(item, count);
+                    return;
+                }
+            }
+            Debug.LogWarning($"Can not find: {slot}");
+        }
     }
 }
