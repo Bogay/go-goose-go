@@ -61,9 +61,11 @@ namespace GoGooseGo
 
         public IEnumerator consumItem()
         {
-            while(this.collection.selected.Value != null)
+            while(true)
             {
                 this.collection.Use();
+                if(this.collection.selected.Value == null)
+                    break;
                 yield return new WaitForSeconds(this.consumeInterval);
             }
         }
