@@ -19,6 +19,8 @@ namespace GoGooseGo
             // Clone a deafult item collection
             Container.BindInstance(GameObject.Instantiate(this.defaultItems).Init());
             Container.Bind<GameObject>().WithId("ItemSlot").FromInstance(this.itemSlot).AsSingle();
+            // Inject ItemDetail UI
+            Container.BindInstance(GameObject.FindObjectOfType<ItemDetail>());
         }
     }
 }

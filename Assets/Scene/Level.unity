@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!224 &5110249 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4725568402465134246, guid: 545b2949398d01c4ea86a9264b2ce128, type: 3}
-  m_PrefabInstance: {fileID: 4725568402468597583}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &284451659
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,17 +471,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &722426665 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1722580368522263078, guid: 545b2949398d01c4ea86a9264b2ce128, type: 3}
-  m_PrefabInstance: {fileID: 4725568402468597583}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37241bc0777c8bf4396095196f110c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &785110964
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,30 +611,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 665808924017783508, guid: e30d497ecad92ee4fbc0645357471072, type: 3}
   m_PrefabInstance: {fileID: 977673062}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1282317310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4725568401456362673, guid: 545b2949398d01c4ea86a9264b2ce128, type: 3}
-  m_PrefabInstance: {fileID: 4725568402468597583}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1282317311 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4725568401456362672, guid: 545b2949398d01c4ea86a9264b2ce128, type: 3}
   m_PrefabInstance: {fileID: 4725568402468597583}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1282317312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282317310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b9698c19cb6caf4f83e9c5406bfe8eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 5110249}
-  detail: {fileID: 722426665}
 --- !u!1 &1345709892
 GameObject:
   m_ObjectHideFlags: 3
@@ -4387,5 +4352,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8711090232788307404, guid: 545b2949398d01c4ea86a9264b2ce128, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1709984182, guid: 545b2949398d01c4ea86a9264b2ce128, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 545b2949398d01c4ea86a9264b2ce128, type: 3}

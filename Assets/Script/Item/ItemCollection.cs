@@ -12,10 +12,12 @@ namespace GoGooseGo
         private List<ItemData> _items;
         [SerializeField]
         private List<int> itemCounts;
+        public ReactiveProperty<ItemData> selected { get; private set; }
         public ReactiveDictionary<ItemData, int> items { get; private set; }
 
         public ItemCollection Init()
         {
+            this.selected = new ReactiveProperty<ItemData>();
             this.items = new ReactiveDictionary<ItemData, int>(this.ToDictionary());
             return this;
         }

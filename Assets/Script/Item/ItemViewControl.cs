@@ -16,6 +16,8 @@ namespace GoGooseGo
         private GameObject slot;
         [Inject]
         private ItemCollection items;
+        [Inject]
+        private DiContainer container;
 
         void Start()
         {
@@ -32,7 +34,9 @@ namespace GoGooseGo
 
         private void onItemAdd(ItemData item, int count)
         {
-            var newSlot = Instantiate(this.slot, this.grid).GetComponent<ItemSlot>();
+            // Use DI container to instantiate so that we would not missing references
+            var newSlot = container.InstantiatePrefab(this.slot, this.grid)
+                .GetComponent<ItemSlot>();
             newSlot.Show(item, count);
         }
         private void onItemRemove(ItemData item) { }

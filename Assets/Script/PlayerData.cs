@@ -56,6 +56,9 @@ namespace GoGooseGo
         // Call this before game start to reset runtime status
         public void Init()
         {
+            this._isLeftPressed = false;
+            this._isRightPressed = false;
+            this.isJump = false;
             this.isGround = new BoolReactiveProperty();
             this.velocity = new Vector2ReactiveProperty();
             var inf = new Vector2(Mathf.NegativeInfinity, Mathf.Infinity);
