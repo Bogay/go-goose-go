@@ -487,9 +487,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37241bc0777c8bf4396095196f110c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  consumeInterval: 2
   name: {fileID: 291772714}
   slot: {fileID: 6346074721704022519}
   description: {fileID: 174862545}
+  use: {fileID: 1677565665}
 --- !u!1 &1479935030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,6 +1008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9698c19cb6caf4f83e9c5406bfe8eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bagPanel: {fileID: 0}
+  closeBtn: {fileID: 0}
   grid: {fileID: 4725568402465134246}
   detail: {fileID: 1722580368522263078}
 --- !u!1 &4725568401882625823

@@ -51,8 +51,9 @@ namespace GoGooseGo
             }
         }
 
-        public void Use(ItemData item)
+        public void Use(ItemData item = null)
         {
+            item = item ?? this.selected.Value;
             try
             {
                 this.items[item]--;
