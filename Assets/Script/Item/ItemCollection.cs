@@ -17,6 +17,8 @@ namespace GoGooseGo
 
         public ItemCollection Init()
         {
+            if(this._items.Count != this.itemCounts.Count)
+                Debug.LogWarning("ItemCollection: Length not equal");
             this.selected = new ReactiveProperty<ItemData>();
             this.items = new ReactiveDictionary<ItemData, int>(this.ToDictionary());
             return this;

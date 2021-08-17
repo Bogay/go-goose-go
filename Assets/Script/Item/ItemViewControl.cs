@@ -25,8 +25,12 @@ namespace GoGooseGo
 
         void Start()
         {
+            foreach(var kv in this.items.items)
+            {
+                this.addItem(kv.Key, kv.Value);
+            }
             this.items.items.ObserveAdd()
-                .Subscribe(x => this.onItemAdd(x.Key, x.Value))
+                .Subscribe(x => this.addItem(x.Key, x.Value))
                 .AddTo(this);
             this.items.items.ObserveReplace()
                 .Subscribe(x =>
@@ -46,7 +50,7 @@ namespace GoGooseGo
             });
         }
 
-        private void onItemAdd(ItemData item, int count)
+        private void addItem(ItemData item, int count)
         {
             // Use DI container to instantiate so that we would not missing references
             var newSlot = container.InstantiatePrefab(this.slot, this.grid)
