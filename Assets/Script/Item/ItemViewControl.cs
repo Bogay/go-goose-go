@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace GoGooseGo
 {
+    // Attach this to the Bag button
     public class ItemViewControl : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject bagPanel;
+        [SerializeField]
+        private Button closeBtn;
         [SerializeField]
         private Transform grid;
         [SerializeField]
@@ -25,11 +29,21 @@ namespace GoGooseGo
                 .Subscribe(x => this.onItemAdd(x.Key, x.Value))
                 .AddTo(this);
             this.items.items.ObserveReplace()
-                .Subscribe(foo =>
+                .Subscribe(x =>
                 {
-                    Debug.Log($"Replace {foo.Key.name} {foo.NewValue}");
+                    Debug.Log($"Replace {x.Key.name} {x.NewValue}");
                 })
                 .AddTo(this);
+            this.closeBtn.onClick.AddListener(() =>
+            {
+                this.items.selected.Value = null;
+                this.bagPanel.gameObject.SetActive(false);
+            });
+            // Click the bag will open item panel
+            GetComponent<Button>().onClick.AddListener(() =>
+            {
+                this.bagPanel.gameObject.SetActive(true);
+            });
         }
 
         private void onItemAdd(ItemData item, int count)
