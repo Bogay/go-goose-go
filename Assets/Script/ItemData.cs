@@ -18,5 +18,10 @@ namespace GoGooseGo
 
         [field : SerializeField]
         public Sprite sprite { get; private set; }
+
+        public override string ToString()
+        {
+            return $"Item [{this.name}@{this.id}]";
+        }
     }
 }
