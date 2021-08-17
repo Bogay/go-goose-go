@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: b9b1187926fa3bb459216ded8476e5fc, type: 2}
   defaultItems: {fileID: 11400000, guid: 0ae2cbb65d906f6449f07005d7465989, type: 2}
+  itemSlot: {fileID: 7736822912660508831, guid: a42012601fa163b418b1862c3e2396f8, type: 3}

@@ -8,6 +8,7 @@ namespace GoGooseGo
     {
         public PlayerData playerData;
         public ItemCollection defaultItems;
+        public GameObject itemSlot;
 
         public override void InstallBindings()
         {
@@ -17,6 +18,7 @@ namespace GoGooseGo
             Container.BindInstance(player).AsSingle();
             // Clone a deafult item collection
             Container.BindInstance(GameObject.Instantiate(this.defaultItems).Init());
+            Container.Bind<GameObject>().WithId("ItemSlot").FromInstance(this.itemSlot).AsSingle();
         }
     }
 }

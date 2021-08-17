@@ -37,7 +37,6 @@ namespace GoGooseGo
 
         public void Add(ItemData item)
         {
-            Debug.Log($"Got item: {item.name}");
             try
             {
                 this.items[item]++;
