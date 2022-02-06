@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: 2
   <name>k__BackingField: "\u9ED1\u5DE7\u514B\u529B"
-  <description>k__BackingField: "\u4E00\u5305\u5DF2\u6253\u958B\u7684\u9ED1\u8272\u5DE7\u514B\u529B\uFF0C\u5230\u671F\u65E5\u88AB\u5283\u6389\uFF0C\u5230\u671F\u65E5\u88AB\u5283\u6389"
+  <description>k__BackingField: "\u4E00\u5305\u5DF2\u6253\u958B\u7684\u9ED1\u8272\u5DE7\u514B\u529B\uFF0C\u5230\u671F\u65E5\u88AB\u5283\u6389"
   <sprite>k__BackingField: {fileID: 21300000, guid: cc2b8da1e2ada734d97efe35f2ae45cc, type: 3}
